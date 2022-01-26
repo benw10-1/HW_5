@@ -25,6 +25,7 @@ function startAnimation () {
         jumbo.children[0].classList.toggle("hidden")
         jumbo.children[1].classList.toggle("hidden")
         jumbo.children[1].classList.toggle("fadeIn")
+        generateTable(current)
     })
 }
 
