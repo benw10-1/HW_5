@@ -1,7 +1,14 @@
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  height: 100%;
 }
 
 textarea {
@@ -14,11 +21,60 @@ textarea {
 }
 
 .jumbotron {
-  text-align: center;
   background-color: transparent;
   color: black;
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 10px inset black;
+  min-height: fit-content;
+  max-height: 100%;
+  height: 100%;
+  padding: 0;
+  position: sticky;
+  -webkit-transition: height 1s ease;
+  -moz-transition: height 1s ease;
+  -o-transition: height 1s ease;
+  transition: height 1s ease;
+}
+
+.contents {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 1s forwards;
+  -moz-animation: fadeIn 1s forwards;
+  -o-animation: fadeIn 1s forwards;
+  animation: fadeIn 1s forwards;
+}
+
+.fadeOut {
+  -webkit-animation: fadeOut 1s forwards;
+  -moz-animation: fadeOut 1s forwards;
+  -o-animation: fadeOut 1s forwards;
+  animation: fadeOut 1s forwards;
+}
+
+.shrink {
+  height: 150px;
+}
+
+.lead {
+  padding: 1em 0 0;
+}
+
+#currentDay {
+  font-size: 2.5em;
+  font-weight: 600;
 }
 
 .description {
@@ -68,4 +124,116 @@ textarea {
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: revert;
+      opacity: 0;
+  }
+
+  100% {
+      display: revert;
+      opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: revert;
+      opacity: 0;
+  }
+
+  100% {
+      display: revert;
+      opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: revert;
+      opacity: 0;
+  }
+
+  100% {
+      display: revert;
+      opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: revert;
+      opacity: 0;
+  }
+
+  100% {
+      display: revert;
+      opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+      opacity: 1;
+  }
+
+  100% {
+      display: none;
+      opacity: 0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+      display: none;
+      opacity: 0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+      display: none;
+      opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+      display: none;
+      opacity: 0;
+  }
 }
