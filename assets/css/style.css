@@ -21,19 +21,22 @@ textarea {
 }
 
 .jumbotron {
-  background-color: transparent;
+  background-color: white;
   color: black;
   border-radius: 0;
-  border-bottom: 8px inset black;
+  /* border-bottom: 8px inset black; */
+  box-shadow: 0 4px 2px -2px gray;
   min-height: fit-content;
   max-height: 100%;
   height: 100%;
   padding: 0;
+  top: 0;
   position: sticky;
   -webkit-transition: height 1s ease;
   -moz-transition: height 1s ease;
   -o-transition: height 1s ease;
   transition: height 1s ease;
+  z-index: 1;
 }
 
 .contents {
@@ -44,10 +47,6 @@ textarea {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-}
-
-.hidden {
-  display: none;
 }
 
 .fadeIn {
@@ -79,6 +78,7 @@ textarea {
 
 .container {
   display: table;
+  width: 100%;
 }
 
 .description {
@@ -88,44 +88,50 @@ textarea {
 .time-block {
   text-align: center;
   border-radius: 15px;
-  display: table-row;
+  display: table-row-group;
+  width: 100%;
 }
 
 .hour {
+  font-size: 2em;
   background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,1) 60%, rgba(211,211,211,1) 100%);
-  /* background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(211,211,211,1) 67%); */
+  background: radial-gradient(circle, rgb(216, 216, 216) 0%, rgb(255, 255, 255) 50%);
   color: #000000;
-  /* border-top: 1px dashed #000000; */
+  border-radius: 20px 0 0 20px;
+  padding: 10px;
+  margin-right: 10px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 3em;
+}
+
+.inp {
+  width: 45em;
+  height: 5em;
+  padding: .5em;
+  text-align: left;
+  display: table-cell;
+  font-size: xx-large;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.inp:focus {
+  outline: none;
 }
 
 .past {
   background-color: #d3d3d3;
-  color: white;
+  color: black;
 }
 
 .present {
   background-color: #ff6961;
-  color: white;
+  color: black;
 }
 
 .future {
   background-color: #77dd77;
   color: white;
-}
-
-.saveBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06aed5;
-  color: white;
-}
-
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
 }
 
 @-webkit-keyframes fadeIn {
@@ -238,4 +244,8 @@ textarea {
       display: none;
       opacity: 0;
   }
+}
+
+.hidden {
+  display: none;
 }

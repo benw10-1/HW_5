@@ -1,5 +1,5 @@
 var jumbo = document.getElementsByClassName("jumbotron")[0]
-
+var found = {}
 
 function getTransitionEndEventName () {
     var transitions = {
@@ -18,15 +18,18 @@ function getTransitionEndEventName () {
     }
 }
 
-function startAnimation () {
+function startFirstAnimation () {
     jumbo.classList.toggle("shrink")
     jumbo.children[0].classList.toggle("fadeOut")
+    var done = false
     jumbo.addEventListener(getTransitionEndEventName(), function () {
+        if (done) return
         jumbo.children[0].classList.toggle("hidden")
         jumbo.children[1].classList.toggle("hidden")
         jumbo.children[1].classList.toggle("fadeIn")
         generateTable(current)
+        done = true
     })
 }
 
-document.getElementsByTagName("body")[0].onload = setTimeout(startAnimation, 1000)
+document.getElementsByTagName("body")[0].onload = setTimeout(startFirstAnimation, 1000)
