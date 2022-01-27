@@ -1,6 +1,6 @@
 var current = moment()
 
-current.hour(12)
+// current.hour(12)
 
 var changed = null
 var currentDay = document.getElementById("currentDay")
