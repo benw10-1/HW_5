@@ -1,11 +1,19 @@
 var current = moment()
-current.hour(10)
-current.minute(59)
-current.second(55)
+
+current.hour(12)
+
 var changed = null
 var currentDay = document.getElementById("currentDay")
 var fromStorage = JSON.parse(localStorage.getItem("storedObj")) ?? {}
 var container = document.getElementsByClassName("container")[0]
+var arrows = document.getElementsByClassName("arrow")
+
+arrows[0].addEventListener("click", function () {
+    updateDay(-1)
+})
+arrows[1].addEventListener("click", function () {
+    updateDay(1)
+})
 
 function generateStructure (time) {
     var m = time.format("M")
@@ -26,6 +34,19 @@ function toStorage () {
     localStorage.setItem("storedObj", JSON.stringify(fromStorage))
 }
 
+function updateDay (lr) {
+    var newTime = moment(changed ?? current)
+    newTime.day(newTime.day() + lr)
+    if (current.isSame(newTime)) {
+        changed = null
+    }
+    else {
+        changed = newTime
+    }
+    updateTime()
+    generateTable(changed)
+}
+
 function writeEvent (event, time, index) {
     generateStructure(time)
     var m = time.format("M")
@@ -41,9 +62,17 @@ function generateTable (time) {
         generateDefaultElements(time)
     }
     else {
-        container.classList.toggle("hidden")
-        container.classList.toggle("fadeIn")
+        var m = time.format("M")
+        var d = time.format("D")
+        var y = time.format("YYYY")
+
+        generateStructure(time)
+
+        for (let i = 0; i < 9; i++) {
+            container.querySelectorAll(".inp")[i].value = fromStorage[y][m][d][i]
+        }
     }
+    updatePast()
 }
 
 function updatePast() {
@@ -56,7 +85,7 @@ function updatePast() {
             container.children[i].children[1].className = "inp future"
             container.children[i].children[1].style.background = null
         }
-        else if (current.isSame(hour)) {
+        else if (current.isSame(hour, "hour")) {
             var percent = [Math.max(0, current.minute()/60 * 100 - 10), current.minute()/60 * 100, Math.min(100, current.minute()/60 * 100 + 10)]
             container.children[i].children[1].className = "inp present"
             container.children[i].children[1].style.background = "linear-gradient(to bottom, #d3d3d3 " + percent[0] + "%, #ff6961 " + percent[1] + "%, #77dd77 " + percent[2] + "%)"
@@ -97,7 +126,7 @@ function generateDefaultElements (time) {
         var event = document.createElement("textarea")
         event.value = fromStorage[y][m][d][i]
         event.onblur = function () {
-            writeEvent(this.value, changed ?? current, i)
+            writeEvent(this.value.trim(), changed ?? current, i)
         }
 
         row.appendChild(hr)
@@ -108,22 +137,26 @@ function generateDefaultElements (time) {
     updatePast()
 }
 
+function updateTime () {
+    if (changed !== null) {
+        currentDay.childNodes[1].textContent = changed.format("MMM Do YYYY")
+    }
+    else {
+        currentDay.childNodes[1].textContent = current.format("MMM Do YYYY")
+    }
+}
+
 var timeLoop = setInterval(function () {
     let m = current.minute()
     let d = current.day()
     current.add(1.01, "seconds")
-    if (changed !== null) {
-        currentDay.innerHTML = changed.format("MMM Do YYYY")
-    }
-    else {
-        currentDay.innerHTML = current.format("MMM Do YYYY")
-    }
+    
     if (m !== current.minute()) {
         updatePast()
     }
     if (d !== current.day()) {
         generateTable(current)
     }
+
+    updateTime()
 }, 1000)
-
-

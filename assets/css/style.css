@@ -112,7 +112,14 @@ textarea {
   text-align: left;
   display: table-cell;
   font-size: xx-large;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0 10px 10px 0;
+}
+
+#currentDay, .hour {
+  -webkit-user-select: none;       
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .inp:focus {
@@ -244,6 +251,29 @@ textarea {
       display: none;
       opacity: 0;
   }
+}
+.arrow {
+  border: solid black;
+  border-width: 0 1rem 1rem 0;
+  display: inline-block;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.arrow:disabled {
+  cursor: default;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin-left: 20px;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  margin-right: 20px;
 }
 
 .hidden {
