@@ -6,9 +6,9 @@ In this assignment, I use JS in order to code a web app that allows the user to 
 
 ## Links
 
-Website:  
-Repo:
+Website: https://benw10-1.github.io/HW_5/  
+Repo: https://github.com/benw10-1/HW_5
 
 ## Screenshots
-![demo](assets/image/readMeImg1.png)
-![demo](assets/image/readMeImg2.png)
+![demo](assets/images/readMeImg1.png)
+![demo](assets/images/readMeImg2.png)
