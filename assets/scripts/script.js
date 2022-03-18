@@ -145,18 +145,16 @@ function updateTime () {
         currentDay.childNodes[1].textContent = current.format("MMM Do YYYY")
     }
 }
-
+let old = Date.now()
 var timeLoop = setInterval(function () {
     let m = current.minute()
     let d = current.day()
-    current.add(1.01, "seconds")
-    
-    if (m !== current.minute()) {
-        updatePast()
-    }
+    let passed = (Date.now() - old)/1000
+    current.add(passed, "seconds")
+    updatePast()
     if (d !== current.day()) {
         generateTable(current)
     }
-
+    old = Date.now()
     updateTime()
 }, 1000)
