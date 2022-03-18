@@ -1,4 +1,4 @@
-# Homework 5: Day Planner
+# Day Planner
 
 ## Description
 
